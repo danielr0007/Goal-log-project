@@ -1,32 +1,52 @@
 // ELEMENTS
 const toggleContainer = document.querySelector('.toggle-element');
-const toggleLogin = document.querySelector('#login');
-const toggleSignup = document.querySelector('#signup');
+const toggleLogin = document.querySelector('#login_toggle');
+const toggleSignup = document.querySelector('#signup_toggle');
 const loginForm = document.querySelector('.login_form');
 const signUpForm = document.querySelector('.signup_form');
+const mainContainer = document.querySelector('.container');
+const toggleColorTab = document.querySelector('#overlay');
+
+
 
 
 // TOGGLE ELEMENT FUNCTIONALITY
 
+// puts elements in their proper place as soons as page loads
 function activateLoginToggleAndShowLoginForm(){
-    toggleLogin.classList.add('active_toggle');
-    signUpForm.classList.add('hide');
+    signUpForm.style.transform = `translate(0, -110%)`;
+    loginForm.style.transform = `translate(0, 0)`;
 }
 activateLoginToggleAndShowLoginForm();
 
+// right form shows when user clicks the togle option
 toggleContainer.addEventListener('click', function(e){
     const clicked = e.target.closest('.toggle');
     if (!clicked) return
     if(clicked === toggleLogin){
-        toggleLogin.classList.add('active_toggle');
-        toggleSignup.classList.remove('active_toggle');
-        signUpForm.classList.add('hide')
-        loginForm.classList.remove('hide')
+        if(loginForm.style.transform = `translate(0, 0)`){
+            signUpForm.style.transform = `translate(0, -110%)`;
+            loginForm.style.transform = `translate(0, 0)`;
+            toggleColorTab.style.transform = `translate(0, 0`;
+        } else{
+            signUpForm.style.transform = `translate(0, 0)`
+            loginForm.style.transform = `translate(100%, 0)`;
+            toggleColorTab.style.transform = `translate(100%, 0`;
+        } 
+       
     }
     if(clicked === toggleSignup){
-        toggleLogin.classList.remove('active_toggle');
-        toggleSignup.classList.add('active_toggle');
-        signUpForm.classList.remove('hide')
-        loginForm.classList.add('hide')
+        if(signUpForm.style.transform = `translate(0, 0)`){
+            signUpForm.style.transform = `translate(0, 0)`
+            loginForm.style.transform = `translate(100%, 0)`;
+            toggleColorTab.style.transform = `translate(100%, 0`;
+        } else{
+            signUpForm.style.transform = `translate(0, -110%)`;
+            loginForm.style.transform = `translate(0, 0)`;
+            toggleColorTab.style.transform = `translate(0, 0`;
+        } 
+
+        
     }
 })
+

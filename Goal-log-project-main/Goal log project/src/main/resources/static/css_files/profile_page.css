@@ -1,0 +1,147 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+::placeholder{
+    color: white;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+button:hover,
+button:focus,
+button:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.hide{
+    display: none !important;
+}
+
+/* header.................................. */
+
+header{
+    width: 100%;
+    height: 10vh;
+    border: solid pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header h3{
+    font-size: 30px;
+
+}
+
+
+/* body of application starts...................... */
+.app_wrapper{
+    width: 100%;
+    height: 110vh;
+    border: solid black;
+    display: grid;
+    grid-template-columns: 23% 77%;
+}
+
+/* main section holds functionality and objective sections */
+main{
+    order: 2;
+    background: linear-gradient(to right, rgb(255, 255, 255), rgba(1, 92, 149, 0.5)),
+      url(/images/main_background_image.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border: solid green ;
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+
+/* functionality section of app begins */
+.left_content_functionality{
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: purple solid;
+}
+
+.percentages_display{
+    width: 100%;
+    height: 40%;
+    background-color: rgb(248, 252, 255);
+    border-radius: 20px;
+}
+
+.add_and_manage_goals{
+    width: 100%;
+    height: 60%;
+    background-color: rgb(248, 252, 255);
+    border-radius: 20px;
+}
+
+/* objective section of app begins................. */
+.right_content_objective{}
+
+
+/* aside section holds bio of user */
+aside{
+    background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(1, 92, 149, 0.201));
+    width: 100%;
+    height: 100%;
+    border: solid red;
+    padding: 40px;
+}
+
+.sidebar_bio{
+    width: 100%;
+    height: 100%;
+    border: solid grey;
+}
+
+.profile_pic{
+    width: 60%;
+    height: 190px;
+    object-fit: cover;
+    border: solid red;
+    position: relative;
+}
+
+.profile_pic img{
+    width: 87%;
+    height: 87%;
+    border-radius: 50%;
+}
+
+.add_pic_button{
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    padding: 10px;
+    background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(1, 92, 149, 0.298));
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar_bio h4{}
+
+.sidebar_bio h6{}

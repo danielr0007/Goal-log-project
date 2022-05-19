@@ -37,10 +37,12 @@ button:active {
 header{
     width: 100%;
     height: 10vh;
-    border: solid pink;
+    /* border: solid pink; */
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 2px 2px 1px rgb(28, 28, 28);
+    z-index: 9999;
 }
 
 header h3{
@@ -53,21 +55,22 @@ header h3{
 .app_wrapper{
     width: 100%;
     height: 110vh;
-    border: solid black;
+    /* border: solid black; */
     display: grid;
-    grid-template-columns: 23% 77%;
+    grid-template-columns: 20% 80%;
 }
 
 /* main section holds functionality and objective sections */
 main{
     order: 2;
-    background: linear-gradient(to right, rgb(255, 255, 255), rgba(1, 92, 149, 0.5)),
+    padding-top: 20px ;
+    background: linear-gradient(to right,  rgb(238, 250, 255), rgba(1, 92, 149, 0.5)),
       url(/images/main_background_image.jpg) no-repeat;
     background-position: center;
     background-size: cover;
     width: 100%;
     height: 100%;
-    border: solid green ;
+    /* border: solid green ; */
     display: grid;
     grid-template-columns: 60% 40%;
 }
@@ -80,7 +83,7 @@ main{
     display: flex;
     flex-direction: column;
     gap: 20px;
-    border: purple solid;
+    /* border: purple solid; */
 }
 
 .percentages_display{
@@ -98,35 +101,49 @@ main{
 }
 
 /* objective section of app begins................. */
-.right_content_objective{}
-
-
-/* aside section holds bio of user */
-aside{
-    background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(1, 92, 149, 0.201));
+.right_content_objective{
     width: 100%;
     height: 100%;
-    border: solid red;
-    padding: 40px;
+    padding: 15px;
+    /* border: solid pink; */
+}
+
+.objective{
+    width: 100%;
+    height: 29%;
+    background-color:rgb(248, 252, 255) ;
+    border-radius: 20px;
+}
+
+
+/* aside section holds bio of user.................. */
+aside{
+    background: linear-gradient(to left,rgb(238, 250, 255), rgba(1, 92, 149, 0.629));
+    width: 100%;
+    height: 100%;
+    /* border: solid red; */
+    padding: 15px 50px;
+    padding-top: 35px ;
 }
 
 .sidebar_bio{
     width: 100%;
     height: 100%;
-    border: solid grey;
+    /* border: solid grey; */
 }
 
 .profile_pic{
-    width: 60%;
-    height: 190px;
+    margin-left: 10px;
+    width: 210px;
+    height: 195px;
     object-fit: cover;
-    border: solid red;
     position: relative;
+    /* border: solid red */
 }
 
 .profile_pic img{
-    width: 87%;
-    height: 87%;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
 }
 
@@ -134,14 +151,39 @@ aside{
     position: absolute;
     bottom: 1px;
     right: 1px;
-    padding: 10px;
-    background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(1, 92, 149, 0.298));
+    padding: 10px 12px;
+    background: linear-gradient(to bottom, rgb(255, 249, 88), rgba(149, 1, 75, 0.298));
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.sidebar_bio h4{}
+.add_pic_button i{
+    font-size: 30px;
+    color: white;
+}
 
-.sidebar_bio h6{}
+#uploadpic{
+    opacity: 0;
+}
+
+.sidebar_bio h4{
+    margin: 15px 0 0 40px;
+    font-size: 20px;
+    line-height: 1.5;
+    color: rgb(53, 53, 53);
+
+}
+
+.sidebar_bio h6{
+    margin: 0 40px;
+    font-size: 14px;
+    color: rgb(82, 82, 82);
+}
+
+#log_out{
+    font-size: 18px;
+    text-decoration: underline;
+    color: rgb(255, 0, 93);
+}

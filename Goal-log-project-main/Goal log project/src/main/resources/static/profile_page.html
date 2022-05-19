@@ -31,12 +31,21 @@
             <div class="sidebar_bio">
                 <div class="profile_pic">
                     <img src="/images/profilepic.jpg" alt="">
-                    <div class="add_pic_button"><i class="fa-solid fa-plus"></i></div>
+                    <!-- <div class="add_pic_button"><i class="fa-solid fa-plus"></i></div> -->
+                    <label class="add_pic_button" for="uploadpic"><i class="fa-solid fa-plus"></i></label>
+                    <input type="file"
+       id="uploadpic" name="photo">
+       <!-- accept="image/png, image/jpeg, pdf"> -->
+
                 </div>
                 <h4>Daniel Rasch</h4>
                 <h6>smesh king</h6>
+                <h4 id="log_out">Log Out</h4>
             </div>
         </aside>
     </div>
+
+    <script src="/js_files/profile_page_main_fe.js"></script>
+    <script src="/js_files/profile_not_main_fe.js"></script>
 </body>
 </html>

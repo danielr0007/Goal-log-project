@@ -257,7 +257,7 @@ main{
     border-radius: 20px;
     background-color: rgba(0, 11, 43, 0.834);
     padding: 20px;
-
+    border: pink solid;
 }
 
 .subsubgoals_container{
@@ -285,10 +285,12 @@ main{
     background-color: rgba(0, 0, 0, 0.9);
     /* margin-top: 20px; */
     padding: 30px;
+    border: red solid;
 }
 
 .add_subsubgoal_container{
     padding: 5px;
+    border: solid blue;
 }
 
 .add_subsubgoal_container p{}

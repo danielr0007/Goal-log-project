@@ -34,6 +34,7 @@ button:active {
 
 body{
     background: linear-gradient(to right,  rgb(238, 250, 255), rgba(1, 92, 149, 0.5));
+    cursor: pointer;
 }
 
 /* header.................................. */
@@ -127,6 +128,7 @@ main{
     width: 100%;
     background: linear-gradient(to right,  rgb(255, 238, 250), rgb(255, 0, 93));
     border-radius: 5px;
+    position: relative;
 }
 
 .individual_percentage_goal_box p{
@@ -134,6 +136,17 @@ main{
     font-size: 16px;
     font-weight: 600;
     color: rgb(0, 0, 0);
+}
+
+.percentage_bar_main{
+    /* width: 10%; */
+    height: 100%;
+    background-color: green;
+    opacity: .3;
+    position: absolute;
+    left: 0;
+    top:0;
+    border-radius: 8px;
 }
 
 .add_subgoal_container{
@@ -153,6 +166,7 @@ main{
     padding: 15px 10px;
     font-size: 18px;
     border: none;
+    z-index: 1;
     
 }
 
@@ -163,6 +177,7 @@ main{
     background-color: rgb(0, 166, 155);
     color: white;
     cursor: pointer;
+    z-index: 1;
 }
 
 
@@ -196,6 +211,7 @@ main{
     width: 100%;
     background: linear-gradient(to right,  rgb(255, 238, 250), rgb(255, 196, 0));
     border-radius: 8px;
+    position: relative;
 }
 
 .completed_autocheck_container{}
@@ -207,6 +223,16 @@ main{
 
 .subgoal_box h4{
     font-size: 20px;
+}
+
+.percentage_bar{
+    /* width: 10%; */
+    height: 100%;
+    background-color: green;
+    opacity: .3;
+    position: absolute;
+    left: 0;
+    border-radius: 8px;
 }
 
 /* objective section of app begins................. */
@@ -257,7 +283,6 @@ main{
     border-radius: 20px;
     background-color: rgba(0, 11, 43, 0.834);
     padding: 20px;
-    border: pink solid;
 }
 
 .subsubgoals_container{
@@ -285,15 +310,16 @@ main{
     background-color: rgba(0, 0, 0, 0.9);
     /* margin-top: 20px; */
     padding: 30px;
-    border: red solid;
 }
 
 .add_subsubgoal_container{
     padding: 5px;
-    border: solid blue;
 }
 
-.add_subsubgoal_container p{}
+.add_subsubgoal_container p{
+    font-size: 16px;
+
+}
 
 .add_subsubgoal_container form{
     display: flex;
@@ -305,11 +331,23 @@ main{
 #subsubgoal_input{
     width: 100%;
     border-radius: 20px;
+    opacity: .9;
+    padding: 15px;
+    font-size: 16px;
 }
 
 #subsubgoal_btn{
-    width: 30%;
+    display: block;
+    margin: auto;
+    margin-top: 18px;
+    width: 150px;
     height: 50px;
+    border: none;
+    background-color: blueviolet;
+    color: aliceblue;
+    font-size: 16px;
+    border-radius: 5px;
+
 }
 
 /* aside section holds bio of user.................. */
@@ -402,6 +440,7 @@ aside{
 }
 
 .add_goal_container button{
+    display: block;
     padding: 15px 15px;
     font-size: 18px;
     border: none;

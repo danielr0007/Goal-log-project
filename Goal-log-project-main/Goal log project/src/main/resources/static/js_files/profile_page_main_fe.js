@@ -371,20 +371,22 @@ function checkoffSubSubGoalsAndAddPercentage() {
     const calculatedPercentage =
       (counter * 100) / document.querySelectorAll("#check_note").length;
 
-    // adds percentage bar and adds to bar based on completion
-    findClickedGoalElement(subGoalContainer).insertAdjacentHTML(
-      "beforeend",
-      '<div class="percentage_bar"></div>'
-    );
-    document.querySelector(
+    // adds percentage bar element and adds to bar color based on completion
+    if (
+      !findClickedGoalElement(subGoalContainer).querySelector(".percentage_bar")
+    ) {
+      findClickedGoalElement(subGoalContainer).insertAdjacentHTML(
+        "beforeend",
+        '<div class="percentage_bar"></div>'
+      );
+    }
+    findClickedGoalElement(subGoalContainer).querySelector(
       ".percentage_bar"
     ).style.width = `${calculatedPercentage}%`;
 
     // when all subsubgoals are checked off this logic checks off the parent goal automatically
     if (calculatedPercentage === 100) {
       mainClickedGoal.checkState = true;
-      console.log(mainClickedGoal.checkState);
-      console.log(mainClickedGoal);
 
       findClickedGoalElement(subGoalContainer)
         .querySelector("#check_note_main")
@@ -435,13 +437,17 @@ function checkoffSubGoalsAndAddPercentage() {
       (counter * 100) / document.querySelectorAll("#check_note_main").length;
 
     // adds percentage bar and adds to bar based on completion
-    document
-      .querySelector(".individual_percentage_goal_box")
-      .insertAdjacentHTML(
+    if (
+      !findClickedGoalElement(macroGoalContainer).querySelector(
+        ".percentage_bar_main"
+      )
+    ) {
+      findClickedGoalElement(macroGoalContainer).insertAdjacentHTML(
         "beforeend",
         '<div class="percentage_bar_main"></div>'
       );
-    document.querySelector(
+    }
+    findClickedGoalElement(macroGoalContainer).querySelector(
       ".percentage_bar_main"
     ).style.width = `${calculatedPercentage}%`;
   });

@@ -19,4 +19,6 @@ public interface UserDao {
     public User uploadPicture(MultipartFile file, int id) throws IOException;
 
     public String getPassword(User user);
+
+    public String postGoalObject(User user);
 }

@@ -78,5 +78,14 @@ public class UserController {
     }
 
 
+    @PostMapping("/postGoalObject")
+    public String postGoalObject(@RequestBody User user){
+
+        return userDao.postGoalObject(user);
+    }
+
+
+
+
 
 }

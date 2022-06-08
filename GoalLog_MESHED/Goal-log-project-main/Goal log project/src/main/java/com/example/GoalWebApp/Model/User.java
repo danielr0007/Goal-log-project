@@ -16,12 +16,13 @@ import java.sql.Blob;
 @Table(name= "user_table")
 public class User {
 
-    public User(String firstName, String lastName, String email, String password, String goal, byte[] picture){
+    public User(String firstName, String lastName, String email, String password, String goal, byte[] picture, String goalObject){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.goal = goal;
+        this.goalObject = goalObject;
     }
 
 
@@ -48,4 +49,7 @@ public class User {
     @Lob
     @Column(name = "pic")
     private byte[] picture;
+
+    @Column(name = "goalobject")
+    private String goalObject;
 }

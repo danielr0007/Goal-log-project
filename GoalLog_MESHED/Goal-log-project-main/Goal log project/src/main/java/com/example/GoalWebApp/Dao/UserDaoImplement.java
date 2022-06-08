@@ -85,5 +85,18 @@ public class UserDaoImplement implements UserDao {
         return u.getPassword();
     }
 
+    @Override
+    public String postGoalObject(User user) {
+
+        User user1 = entityManager.find(User.class,user.getId());
+
+        user1.setGoalObject(user.getGoalObject());
+
+         User user2 = entityManager.merge(user1);
+
+
+        return user2.getGoalObject();
+    }
+
 
 }

@@ -41,6 +41,9 @@ userData.id = userObject;
                 document.getElementById("profileImage").src = "data:image/jpeg;base64," + data.picture;
                 document.getElementById("username1").innerText = data.firstName + " " + data.lastName;
                 document.getElementById("usergoal1").innerText = "Goal: " + data.goal;
+
+
+               // localStorage.setItem("userOBJ",JSON.stringify(data) )
             }
 
         })

@@ -24,6 +24,7 @@ const subSubGoalBtn = document.querySelector("#subsubgoal_btn");
 // .................................................................
 // .................................................................
 
+
 // this helper function finds the active/clickon goal in a container and returns it's name//////////////////////////////////////////////////////
 function findClickedGoalName(parentContainerHoldingGoals) {
     // variable holding a collection/list of all subgoals currently in container
@@ -84,9 +85,104 @@ function locateSubGoalsObjectToLoop(containerHoldingGoals, objectToLoop) {
 // .................................................................
 // .................................................................
 // .................................................................
-const mainGoals = [];
+let mainGoals = [];
+//..................................................................
+//...................................................................
+
+let userObject1 = JSON.parse(localStorage.getItem("userID"));//CONVERTS THE TEXT TO JSON FORMAT
+
+
+let userData1 = {};
+
+userData1.id = userObject1;
+
+const rawResponse2 =  fetch('/getUser', {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.token
+    },
+    body: JSON.stringify(userData1)//the object containing email and pass converted to JSON in the request body
+})
+    .then(response => response.json())//extract the response body
+    .then(data => {
+        console.log("User object response from getUser API:")
+        console.log(data)
+        if(data != null){
+
+
+
+            console.log(JSON.parse(data.goalObject))
+            mainGoals = JSON.parse(data.goalObject)
+
+        }
+
+    })
+
 // .................................................................
 // .................................................................
+
+
+
+
+
+async function func(goals){
+
+
+
+
+        let userData = {}
+
+        userData.id = localStorage.userID;
+        userData.goalObject = JSON.stringify(goals);
+
+        const rawResponse = await fetch('/postGoalObject', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        }).then(res=> res.json()).then(data => {
+
+            console.log(data.email);
+
+
+
+            const goalDescription = "dick"
+
+            console.log(goalDescription)
+
+            macroGoalContainer.insertAdjacentHTML(
+                "afterbegin",
+                `<div class="individual_percentage_goal_box">
+    <p>${goalDescription}</p>
+    <div class="add_subgoal_container hide">
+        <form action="">
+            <input type="text" name="new_goal" id="new_subgoal_input" placeholder="type in your new subgoal" required>
+            <button class="add_subgoal_btn" type="button"><i class="fa-solid fa-plus"></i></button>
+        </form>
+    </div>
+</div>`
+            );
+
+
+
+
+
+
+
+
+        })
+
+
+
+
+
+
+}
+
 
 // ADD NEW MAIN GOAL FUNCTIONALITY..................................
 // .................................................................
@@ -114,6 +210,8 @@ const createAndPlaceNewGoalObject = function () {
 
     // clears input
     initialGoalInput.value = "";
+
+    sendToDataBase(mainGoals)
 };
 
 // TOP FUNCTION
@@ -224,6 +322,8 @@ const addSubGoal = function () {
         for (let goal of addSubGContainer) {
             goal.classList.add("hide");
         }
+
+        sendToDataBase(mainGoals)
     });
 };
 
@@ -317,6 +417,8 @@ const addSubSubGoal = function () {
         document
             .querySelector(".subsubgoals_macro_container")
             .classList.add("hide");
+
+        sendToDataBase(mainGoals)
     });
 };
 
@@ -450,6 +552,8 @@ function checkoffSubGoalsAndAddPercentage() {
         findClickedGoalElement(macroGoalContainer).querySelector(
             ".percentage_bar_main"
         ).style.width = `${calculatedPercentage}%`;
+
+        sendToDataBase(mainGoals)
     });
 }
 

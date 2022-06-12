@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css_files/signup.css">
+    <script src="https://kit.fontawesome.com/cd8254595d.js" crossorigin="anonymous"></script>
+
+
+    <title>Home</title>
+</head>
+<body>
+    <!-- navigation -->
+    <header>
+        <nav>
+            <h4 id="logo">LOGO</h4>
+        </nav>
+    </header>
+
+    <!-- main -->
+    <main>
+        <div class="container">
+
+            <h2 id="www">Vizualize. Execute. Smesh</h2>
+            <h4></h4>
+
+            <h2 id="logouttext"></h2>
+            <div class="form-container">
+                <div class="toggle-element">
+                    <div id="overlay"></div>
+                    <h4 class="toggle" id="login_toggle">Login</h4>
+                    <h4 class="toggle" id="signup_toggle">Signup</h4>
+                </div>
+
+                <div class="form-parent-container">
+                    <form class="signup_form" action="">
+                        <input class="inputs" type="text" placeholder="name" id="first_name" required>
+                        <input class="inputs" type="text" placeholder="last name" id="last_name" required>
+                        <input class="inputs" type="email" placeholder="email" id="email" required>
+                        <input class="inputs" type="password" placeholder="password" id="password" required>
+                        <input class="inputs" type="password" placeholder="confirm password" id="confirm_password" required>
+                        <textarea class="inputs" name="goal_text" id="goal_text" cols="30" rows="6" placeholder="In 3 sentences tell us where you see yourself in 5 years" required></textarea>
+                        <button id="signup_button" class="button" onclick="registerUser()">Create profile</button>
+                    </form>
+                    <form class="login_form" action="">
+                        <input class="inputs" type="email" placeholder="email" id="login_email">
+                        <input class="inputs" type="password" placeholder="password" id="login_password">
+                        <button id="login_button" class="button" onclick="loginUser()">Log in</button>
+                        <a href="recover_password_page.html" style="color: turquoise">Recover Password</a>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </main>
+ 
+            
+    <script src="js_files/signup.js"></script>
+    <script src="js_files/loginUser.js"></script>
+    <script src="js_files/registerUser.js"></script>
+
+</body>
+</html>

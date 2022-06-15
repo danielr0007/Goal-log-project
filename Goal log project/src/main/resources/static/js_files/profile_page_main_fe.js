@@ -24,6 +24,10 @@ const subSubGoalBtn = document.querySelector("#subsubgoal_btn");
 // .................................................................
 // .................................................................
 
+
+
+
+
 // this helper function finds the active/clickedon goal in a container and returns it's name//////////////////////////////////////////////////////
 function findClickedGoalName(parentContainerHoldingGoals) {
   // variable holding a collection/list of all subgoals currently in container
@@ -97,7 +101,49 @@ let mainGoals = [];
 // .................................................................
 // .................................................................
 
+function sendMainGoalsToDb(){
 
+  let mainGoalsString = JSON.stringify(mainGoals);
+
+  let userData = {};
+  userData.goalObject = mainGoalsString;
+  userData.id = localStorage.userID;
+
+  const rawResponse =  fetch('/postGoalObject', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.token
+    },
+    body: JSON.stringify(userData)//the object containing email and pass converted to JSON in the request body
+  }).then(response => response.json())//extract the response body
+      .then(data => console.log(data))
+
+}
+
+function loadDataFromLocalStorageFromDB(){
+
+
+  let dataInStringForm = localStorage.getItem('userOBJ');
+
+  let profileDataObject = JSON.parse(dataInStringForm);
+
+  if(profileDataObject.goalObject === undefined || profileDataObject.goalObject === null) {
+    console.log('fugazi')
+    return
+  }
+
+  let targetDataObject = JSON.parse(profileDataObject.goalObject);
+
+  console.log(targetDataObject)
+
+
+
+
+}
+
+loadDataFromLocalStorageFromDB();
 // ///////////////////////////////////////////////
 // ///////////////////////////////////////////////
 
@@ -135,6 +181,8 @@ const createAndPlaceNewGoalObject = function () {
 
   // clears input
   initialGoalInput.value = "";
+
+  sendMainGoalsToDb()
 };
 
 // TOP FUNCTION
@@ -200,7 +248,9 @@ const showAddNewGoalDivAndSubGoals = function () {
     </div>`
       );
     });
+
   });
+
 };
 
 // TOP FUNCTION
@@ -254,6 +304,8 @@ const addSubGoal = function () {
     for (let goal of addSubGContainer) {
       goal.classList.add("hide");
     }
+
+    sendMainGoalsToDb()
   });
 };
 
@@ -352,6 +404,8 @@ const addSubSubGoal = function () {
     document
       .querySelector(".subsubgoals_macro_container")
       .classList.add("hide");
+
+    sendMainGoalsToDb()
   });
 };
 
@@ -427,6 +481,8 @@ function checkoffSubSubGoalsAndAddPercentage() {
         .querySelector("#check_note_main")
         .click();
     }
+
+    sendMainGoalsToDb()
   });
 }
 
@@ -485,6 +541,8 @@ function checkoffSubGoalsAndAddPercentage() {
     findClickedGoalElement(macroGoalContainer).querySelector(
       ".percentage_bar_main"
     ).style.width = `${calculatedPercentage}%`;
+
+    sendMainGoalsToDb()
   });
 }
 
@@ -525,6 +583,8 @@ function trashSubSubGoals() {
     }
 
     clicked.parentElement.remove();
+
+    sendMainGoalsToDb()
   });
 }
 
@@ -567,6 +627,8 @@ function trashSubGoals(container, containerClass, individual) {
     for (let goal of subSubGolazos) {
       goal.remove();
     }
+
+    sendMainGoalsToDb()
   });
 }
 
@@ -592,15 +654,14 @@ function trashGoals() {
     if (clicked.parentElement.tagName === "BUTTON") return;
 
     // gets the name of the goal where the user checked off
-    const nameOfGoalClicked = clicked.previousElementSibling.innerText;
-
+    const nameOfGoalClicked = clicked.previousElementSibling.previousElementSibling.innerText;
+    console.log(nameOfGoalClicked)
     // loops through maingoals and removes the goal the user wishes to delete
     for (let goal of mainGoals) {
       if (nameOfGoalClicked === goal.name) {
         removeItemOnce(mainGoals, goal);
       }
     }
-
     // removes the goal the user wishes to delete from the DOM
     clicked.parentElement.remove();
 
@@ -620,31 +681,33 @@ function trashGoals() {
     for (let goal of subSubGolazos) {
       goal.remove();
     }
+
+    sendMainGoalsToDb()
   });
 }
 
 trashGoals();
 
 // TEMP FUNCTION THAT CALLS THE POPULATE DATA FUNCTION FOR TESTXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-document.querySelector("#log_out").addEventListener("mouseover", populateFetchData);
+// document.querySelector("#log_out").addEventListener("mouseover", populateFetchData);
 
 // TEMP FUNCTION THAT CLEARS EVERYTHINGXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-document.querySelector(".logo").addEventListener("click", function () {
-  const subSubGolazos = document.querySelectorAll(".individual_subsubgoal");
-  for (let goal of subSubGolazos) {
-    goal.remove();
-  }
-
-  const subGolazos = document.querySelectorAll(".subgoal_box");
-  for (let goal of subGolazos) {
-    goal.remove();
-  }
-
-  const golazos = document.querySelectorAll(".individual_percentage_goal_box");
-  for (let goal of golazos) {
-    goal.remove();
-  }
-});
+// document.querySelector(".logo").addEventListener("click", function () {
+//   const subSubGolazos = document.querySelectorAll(".individual_subsubgoal");
+//   for (let goal of subSubGolazos) {
+//     goal.remove();
+//   }
+//
+//   const subGolazos = document.querySelectorAll(".subgoal_box");
+//   for (let goal of subGolazos) {
+//     goal.remove();
+//   }
+//
+//   const golazos = document.querySelectorAll(".individual_percentage_goal_box");
+//   for (let goal of golazos) {
+//     goal.remove();
+//   }
+// });
 
 // FUNCTION THAT POPULATES DATA FROM DATABASE WHEN PAGE LOADS YES YES  YES  YES  YES  YES  YES  YES  YES  YES  YES  YES  YES
 function populateFetchData() {
@@ -666,3 +729,5 @@ function populateFetchData() {
     );
   });
 }
+
+populateFetchData();

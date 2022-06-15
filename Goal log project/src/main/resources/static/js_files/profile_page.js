@@ -43,7 +43,7 @@ userData.id = userObject;
                 document.getElementById("usergoal1").innerText = "Goal: " + data.goal;
 
 
-               // localStorage.setItem("userOBJ",JSON.stringify(data) )
+               localStorage.setItem("userOBJ",JSON.stringify(data))
             }
 
         })

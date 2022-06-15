@@ -93,9 +93,10 @@ function removeItemOnce(arr, value) {
 // .................................................................
 // .................................................................
 // .................................................................
-const mainGoals = [];
+let mainGoals = [];
 // .................................................................
 // .................................................................
+
 
 // ///////////////////////////////////////////////
 // ///////////////////////////////////////////////
@@ -624,7 +625,44 @@ function trashGoals() {
 
 trashGoals();
 
+// TEMP FUNCTION THAT CALLS THE POPULATE DATA FUNCTION FOR TESTXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+document.querySelector("#log_out").addEventListener("mouseover", populateFetchData);
 
-function fetchAndPopulateData (){
-    
+// TEMP FUNCTION THAT CLEARS EVERYTHINGXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+document.querySelector(".logo").addEventListener("click", function () {
+  const subSubGolazos = document.querySelectorAll(".individual_subsubgoal");
+  for (let goal of subSubGolazos) {
+    goal.remove();
+  }
+
+  const subGolazos = document.querySelectorAll(".subgoal_box");
+  for (let goal of subGolazos) {
+    goal.remove();
+  }
+
+  const golazos = document.querySelectorAll(".individual_percentage_goal_box");
+  for (let goal of golazos) {
+    goal.remove();
+  }
+});
+
+// FUNCTION THAT POPULATES DATA FROM DATABASE WHEN PAGE LOADS YES YES  YES  YES  YES  YES  YES  YES  YES  YES  YES  YES  YES
+function populateFetchData() {
+  mainGoals.forEach(function (goal) {
+    console.log(goal);
+    console.log(goal.name);
+    document.querySelector(".percentage_goal_box").insertAdjacentHTML(
+      "afterbegin",
+      `<div class="individual_percentage_goal_box">
+      <p>${goal.name}</p>
+      <div class="add_subgoal_container hide">
+          <form action="">
+              <input type="text" name="new_goal" id="new_subgoal_input" placeholder="type in your new subgoal" required>
+              <button class="add_subgoal_btn" type="button"><i class="fa-solid fa-plus"></i></button>
+          </form>
+      </div>
+      <i class="fa-solid fa-trash-can"></i>
+    </div>`
+    );
+  });
 }

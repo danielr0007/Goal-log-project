@@ -1,0 +1,225 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to right, rgba(149, 1, 149, 0.5), rgba(255, 190, 201, 0.4)),
+    url(../images/target.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+::placeholder{
+    color: white;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+button:hover,
+button:focus,
+button:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+.hide{
+    display: none !important;
+}
+
+.active_toggle{
+    background: palevioletred;
+    border-radius: 30px;
+}
+
+/* header................ */
+
+header{
+    width: 100%;
+    height: 10vh;
+    padding: 10px;
+    background-color: rgb(0, 0, 0, .2);
+}
+
+nav{
+    padding: 5px;
+}
+
+/* main.................... */
+
+main{
+    margin-top: 150px;
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    text-align: center;
+    width: 50%;
+    height: 850px;
+}
+
+.container h2{
+    padding: 10px;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 40px;
+    line-height: 1.5;
+
+}
+
+.container > h4{
+    padding: 10px;
+    margin-bottom: 40px;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+
+
+
+}
+.form-container{
+    margin: auto;
+    margin-bottom: 10px;
+    width: 60%;
+
+}
+
+.toggle-element{
+    display: flex;
+    /* justify-content: center; */
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.4);
+    margin-top: 40px;
+    position: relative;
+
+}
+
+.toggle{
+    width: 100%;
+    font-size: 25px;
+    font-weight: 400;
+    color: white;
+    padding: 10px;
+    transition: all .3s ease-in-out;
+
+}
+
+#login_toggle{
+
+
+}
+
+#signup_toggle{
+
+}
+
+#overlay {
+    position: absolute; /* Sit on top of the page content */
+    width: 50%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(255, 0, 128); /* Black background with opacity */
+    z-index:-1; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+    border-radius: 30px;
+    transition: all .5s ease-in-out;
+}
+
+/* form.......................... */
+
+
+.form-parent-container{
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 600px;
+
+}
+
+form{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow: hidden;
+}
+
+
+.signup_form{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: all .5s ease-in-out;
+
+}
+
+.inputs{
+    background-color: rgba(255, 255, 255, 0.4);
+    font-size: 16px;
+    font-weight: 400;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+}
+
+#first_name{}
+
+#last_name{}
+
+#email{}
+
+#password{}
+
+#confirm_password{}
+
+#goal_text{}
+
+#login_email{}
+
+#login_password{}
+
+/* login form code */
+.login_form{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-top: 50px !important;
+    /* transform: translate(100%, 0); */
+    transition: all .5s ease-in-out;
+}
+
+button{
+    margin-top: 40px;
+    background: white;
+    border: none;
+    padding: 12px 60px;
+    border-radius: 20px;
+    font-size: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+

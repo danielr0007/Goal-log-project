@@ -24,10 +24,6 @@ const subSubGoalBtn = document.querySelector("#subsubgoal_btn");
 // .................................................................
 // .................................................................
 
-
-
-
-
 // this helper function finds the active/clickedon goal in a container and returns it's name//////////////////////////////////////////////////////
 function findClickedGoalName(parentContainerHoldingGoals) {
   // variable holding a collection/list of all subgoals currently in container
@@ -101,52 +97,67 @@ let mainGoals = [];
 // .................................................................
 // .................................................................
 
-function sendMainGoalsToDb(){
+// ///////////////////////////////////////////////
+// ///////////////////////////////////////////////
+// this function sends mainGoals array to database everytime a trigger is clicked. Also sends back info to be used for page population//////////////////////////////////////////////////////
 
-  let mainGoalsString = JSON.stringify(mainGoals);
+function sendMainGoalsToDb() {
+  const mainGoalsString = JSON.stringify(mainGoals);
 
-  let userData = {};
+  const userData = {};
   userData.goalObject = mainGoalsString;
   userData.id = localStorage.userID;
 
-  const rawResponse =  fetch('/postGoalObject', {
-    method: 'POST',
+  const rawResponse = fetch("/postGoalObject", {
+    method: "POST",
     headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': localStorage.token
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: localStorage.token,
     },
-    body: JSON.stringify(userData)//the object containing email and pass converted to JSON in the request body
-  }).then(response => response.json())//extract the response body
-      .then(data => console.log(data))
-
+    body: JSON.stringify(userData), //the object containing email and pass converted to JSON in the request body
+  })
+    .then((response) => response.json()) //extract the response body
+    .then((data) => console.log(data));
 }
 
-function loadDataFromLocalStorageFromDB(){
+// ///////////////////////////////////////////////
+// ///////////////////////////////////////////////
+// this function loads the data into the profile page when the user logs in/////////////////////
 
+function loadDataFromLocalStorageFromDB() {
+  const dataInStringForm = localStorage.getItem("userOBJ");
 
-  let dataInStringForm = localStorage.getItem('userOBJ');
+  const profileDataObject = JSON.parse(dataInStringForm);
 
-  let profileDataObject = JSON.parse(dataInStringForm);
+  if (
+    profileDataObject.goalObject === undefined ||
+    profileDataObject.goalObject === null
+  )
+    return;
 
-  if(profileDataObject.goalObject === undefined || profileDataObject.goalObject === null) {
-    console.log('fugazi')
-    return
-  }
+  const targetDataObject = JSON.parse(profileDataObject.goalObject);
 
-  let targetDataObject = JSON.parse(profileDataObject.goalObject);
-
-  console.log(targetDataObject)
-
-
-
-
+  console.log(targetDataObject);
 }
 
 loadDataFromLocalStorageFromDB();
 // ///////////////////////////////////////////////
 // ///////////////////////////////////////////////
 
+// ///////////////////////////////////////////////
+// ///////////////////////////////////////////////
+// this function prevents certain elements to be cached. (the ones that have the no_cache class/////////////////////
+function preventCache() {
+  var nods = document.getElementsByClassName("no_cache");
+  for (var i = 0; i < nods.length; i++) {
+    nods[i].attributes["src"].value += "?a=" + Math.random();
+  }
+}
+
+preventCache();
+
+// START OF CODE GOAL ADDING AND DELETING FUNCTIONALITY
 // ADD NEW MAIN GOAL FUNCTIONALITY..................................
 // .................................................................
 // .................................................................
@@ -165,7 +176,7 @@ const createAndPlaceNewGoalObject = function () {
   mainGoals.push({ name: goalDescription, subgoals: [] });
 
   // html code of element to put in page
-  const html = `<div class="individual_percentage_goal_box">
+  const html = `<div class="individual_percentage_goal_box no_cache">
   <p>${goalDescription}</p>
   <div class="add_subgoal_container hide">
       <form action="">
@@ -182,7 +193,8 @@ const createAndPlaceNewGoalObject = function () {
   // clears input
   initialGoalInput.value = "";
 
-  sendMainGoalsToDb()
+  // sends mainGoals to database and returns data
+  sendMainGoalsToDb();
 };
 
 // TOP FUNCTION
@@ -248,9 +260,7 @@ const showAddNewGoalDivAndSubGoals = function () {
     </div>`
       );
     });
-
   });
-
 };
 
 // TOP FUNCTION
@@ -305,7 +315,8 @@ const addSubGoal = function () {
       goal.classList.add("hide");
     }
 
-    sendMainGoalsToDb()
+    // sends mainGoals to database and returns data
+    sendMainGoalsToDb();
   });
 };
 
@@ -405,7 +416,8 @@ const addSubSubGoal = function () {
       .querySelector(".subsubgoals_macro_container")
       .classList.add("hide");
 
-    sendMainGoalsToDb()
+    // sends mainGoals to database and returns data
+    sendMainGoalsToDb();
   });
 };
 
@@ -482,7 +494,8 @@ function checkoffSubSubGoalsAndAddPercentage() {
         .click();
     }
 
-    sendMainGoalsToDb()
+    // sends mainGoals to database and returns data
+    sendMainGoalsToDb();
   });
 }
 
@@ -542,7 +555,8 @@ function checkoffSubGoalsAndAddPercentage() {
       ".percentage_bar_main"
     ).style.width = `${calculatedPercentage}%`;
 
-    sendMainGoalsToDb()
+    // sends mainGoals to database and returns data
+    sendMainGoalsToDb();
   });
 }
 
@@ -584,7 +598,8 @@ function trashSubSubGoals() {
 
     clicked.parentElement.remove();
 
-    sendMainGoalsToDb()
+    // sends mainGoals to database and returns data
+    sendMainGoalsToDb();
   });
 }
 
@@ -628,7 +643,8 @@ function trashSubGoals(container, containerClass, individual) {
       goal.remove();
     }
 
-    sendMainGoalsToDb()
+    // sends mainGoals to database and returns data
+    sendMainGoalsToDb();
   });
 }
 
@@ -654,8 +670,9 @@ function trashGoals() {
     if (clicked.parentElement.tagName === "BUTTON") return;
 
     // gets the name of the goal where the user checked off
-    const nameOfGoalClicked = clicked.previousElementSibling.previousElementSibling.innerText;
-    console.log(nameOfGoalClicked)
+    const nameOfGoalClicked =
+      clicked.previousElementSibling.previousElementSibling.innerText;
+
     // loops through maingoals and removes the goal the user wishes to delete
     for (let goal of mainGoals) {
       if (nameOfGoalClicked === goal.name) {
@@ -682,7 +699,8 @@ function trashGoals() {
       goal.remove();
     }
 
-    sendMainGoalsToDb()
+    // sends mainGoals to database and returns data
+    sendMainGoalsToDb();
   });
 }
 
@@ -712,8 +730,6 @@ trashGoals();
 // FUNCTION THAT POPULATES DATA FROM DATABASE WHEN PAGE LOADS YES YES  YES  YES  YES  YES  YES  YES  YES  YES  YES  YES  YES
 function populateFetchData() {
   mainGoals.forEach(function (goal) {
-    console.log(goal);
-    console.log(goal.name);
     document.querySelector(".percentage_goal_box").insertAdjacentHTML(
       "afterbegin",
       `<div class="individual_percentage_goal_box">

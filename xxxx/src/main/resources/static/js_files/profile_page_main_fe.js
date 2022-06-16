@@ -155,7 +155,7 @@ function preventCache() {
   }
 }
 
-preventCache();
+//preventCache();
 
 // START OF CODE GOAL ADDING AND DELETING FUNCTIONALITY
 // ADD NEW MAIN GOAL FUNCTIONALITY..................................

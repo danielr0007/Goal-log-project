@@ -7,8 +7,11 @@
 }else{*/
 
 
+if(localStorage.userPicture != undefined){
+    document.getElementById("profileImage").src = "data:image/jpeg;base64," + localStorage.getItem("userPicture");
+    document.getElementById("profileImage2").src = "data:image/jpeg;base64," + localStorage.getItem("userPicture");
+}
 
-document.getElementById("profileImage").src = "data:image/jpeg;base64," + localStorage.getItem("userPicture");
 
 
 
@@ -38,7 +41,15 @@ userData.id = userObject;
             console.log("User object response from getUser API:")
             console.log(data)
             if(data != null){
-                document.getElementById("profileImage").src = "data:image/jpeg;base64," + data.picture;
+                if(data.picture == null){
+                    document.getElementById("profileImage").src = "images/default_profile_pic.jpeg";
+                    document.getElementById("profileImage2").src = "images/default_profile_pic.jpeg";
+
+                }else if (data.picture != null){
+                    document.getElementById("profileImage").src = "data:image/jpeg;base64," + data.picture;
+                    document.getElementById("profileImage2").src = "data:image/jpeg;base64," + data.picture;
+                }
+
                 document.getElementById("username1").innerText = data.firstName + " " + data.lastName;
                 document.getElementById("usergoal1").innerText = "Goal: " + data.goal;
 
@@ -87,6 +98,7 @@ uploadButton.addEventListener("change", async function () {
 
             }else{
                 document.getElementById("profileImage").src = "data:image/jpeg;base64,"+ data.picture;
+                document.getElementById("profileImage2").src = "data:image/jpeg;base64,"+ data.picture;
                 localStorage.userPicture = data.picture;
             }
 

@@ -194,7 +194,7 @@ const createAndPlaceNewGoalObject = function () {
   initialGoalInput.value = "";
 
   // sends mainGoals to database and returns data
-  sendMainGoalsToDb();
+  // sendMainGoalsToDb();
 };
 
 // TOP FUNCTION

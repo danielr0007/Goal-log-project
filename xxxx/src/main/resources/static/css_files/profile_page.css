@@ -190,6 +190,8 @@ main{
     font-size: 18px;
     border: none;
     z-index: 1;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
     
 }
 
@@ -201,6 +203,8 @@ main{
     color: white;
     cursor: pointer;
     z-index: 1;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 
@@ -252,7 +256,7 @@ main{
 }
 
 .subgoal_box i{
-    font-size: 27px;
+    font-size: 18px;
     padding-bottom: 6px;
 }
 /* checkbox styling */
@@ -336,6 +340,7 @@ main{
 
 .individual_subsubgoal{
     border: solid rgb(152, 152, 152) .5px;
+    border-radius: 20px;
     padding: 15px;
     margin: 5px 0 10px;
     color: white;

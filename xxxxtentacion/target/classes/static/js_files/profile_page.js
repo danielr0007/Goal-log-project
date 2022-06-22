@@ -12,47 +12,7 @@ if (localStorage.userPicture != undefined) {
     "data:image/jpeg;base64," + localStorage.getItem("userPicture");
 }
 
-//on ready load user profile info with session storage saved user object at login
-let userObject = JSON.parse(localStorage.getItem("userID")); //CONVERTS THE TEXT TO JSON FORMAT
 
-let userData = {};
-
-userData.id = userObject;
-
-//calls api when page loads to get user data and load it to profile as soon as page load
-const rawResponse = fetch("/getUser", {
-  method: "POST",
-  headers: {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-    Authorization: localStorage.token,
-  },
-  body: JSON.stringify(userData), //the object containing email and pass converted to JSON in the request body
-})
-  .then((response) => response.json()) //extract the response body
-  .then((data) => {
-    console.log("User object response from getUser API:");
-    console.log(data);
-    if (data != null) {
-      if (data.picture == null) {
-        document.getElementById("profileImage").src =
-          "images/default_profile_pic.jpeg";
-        document.getElementById("profileImage2").src =
-          "images/default_profile_pic.jpeg";
-      } else if (data.picture != null) {
-        document.getElementById("profileImage").src =
-          "data:image/jpeg;base64," + data.picture;
-        document.getElementById("profileImage2").src =
-          "data:image/jpeg;base64," + data.picture;
-      }
-
-      document.getElementById("username1").innerText =
-        data.firstName + " " + data.lastName;
-      document.getElementById("usergoal1").innerText = data.goal;
-
-      localStorage.setItem("userOBJ", JSON.stringify(data));
-    }
-  });
 
 let uploadButton = document.getElementById("uploadpic");
 //pic upload...change
@@ -102,6 +62,7 @@ document.getElementById("log_out").addEventListener("click", function () {
   localStorage.removeItem("token");
   localStorage.removeItem("userID");
   window.location.href = "index.html";
+  console.log('working')
 });
 
 //}

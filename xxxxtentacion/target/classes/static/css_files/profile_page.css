@@ -1,9 +1,12 @@
-
+:root{
+    --mainfont-font-family: 'Lato', sans-serif;
+}
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: var(--mainfont-font-family);
 }
 
 ::placeholder{
@@ -127,6 +130,7 @@ main{
     font-size: 17px;
     color: rgb(152, 152, 152);
     line-height: 1.5;
+    font-family: var(--mainfont-font-family);
 }
 
 .percentage_goal_box{
@@ -239,7 +243,7 @@ main{
     align-items: center;
     gap: 15px;
     width: 100%;
-    background: linear-gradient(to right,  rgb(255, 224, 120), rgb(255, 196, 0));
+    background: linear-gradient(to right, rgb(255, 255, 255), rgb(20, 19, 47));
     border-radius: 8px;
     position: relative;
 }
@@ -257,6 +261,7 @@ main{
 
 .subgoal_box i{
     font-size: 18px;
+    color: white;
     padding-bottom: 6px;
 }
 /* checkbox styling */
@@ -524,6 +529,7 @@ aside{
     border-radius: 10px;
     font-size: 14px;
     cursor: pointer;
+    font-family: var(--mainfont-font-family);
 }
 #log_out:hover{
     color: rgb(126, 199, 233);

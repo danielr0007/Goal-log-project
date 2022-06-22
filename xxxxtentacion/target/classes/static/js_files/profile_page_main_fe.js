@@ -23,6 +23,63 @@ const subSubGoalBtn = document.querySelector("#subsubgoal_btn");
 // .................................................................
 // .................................................................
 // .................................................................
+let mainGoals = [];
+//on ready load user profile info with session storage saved user object at login
+let userObject = JSON.parse(localStorage.getItem("userID")); //CONVERTS THE TEXT TO JSON FORMAT
+
+let userData = {};
+
+userData.id = userObject;
+
+//calls api when page loads to get user data and load it to profile as soon as page load
+const rawResponse = fetch("/getUser", {
+  method: "POST",
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    Authorization: localStorage.token,
+  },
+  body: JSON.stringify(userData), //the object containing email and pass converted to JSON in the request body
+})
+    .then((response) => response.json()) //extract the response body
+    .then((data) => {
+      console.log("User object response from getUser API:");
+      console.log(data);
+      if (data != null) {
+        if (data.picture == null) {
+          document.getElementById("profileImage").src =
+              "images/default_profile_pic.jpeg";
+          document.getElementById("profileImage2").src =
+              "images/default_profile_pic.jpeg";
+        } else if (data.picture != null) {
+          document.getElementById("profileImage").src =
+              "data:image/jpeg;base64," + data.picture;
+          document.getElementById("profileImage2").src =
+              "data:image/jpeg;base64," + data.picture;
+        }
+
+        document.getElementById("username1").innerText =
+            data.firstName + " " + data.lastName;
+        document.getElementById("usergoal1").innerText = data.goal;
+
+        localStorage.setItem("userOBJ", JSON.stringify(data));
+
+        console.log("this is from fetch in profilemainfe: ");
+        let userObj = JSON.parse(data.goalObject);
+        console.log(userObj);
+
+        mainGoals = userObj;
+
+        console.log("maingoals content:")
+        console.log(mainGoals);
+
+        populateFetchData();
+
+      }
+    });
+
+
+
 
 // this helper function finds the active/clickedon goal in a container and returns it's name//////////////////////////////////////////////////////
 function findClickedGoalName(parentContainerHoldingGoals) {
@@ -93,7 +150,7 @@ function removeItemOnce(arr, value) {
 // .................................................................
 // .................................................................
 // .................................................................
-let mainGoals = [];
+
 // .................................................................
 // .................................................................
 
@@ -141,7 +198,7 @@ function loadDataFromLocalStorageFromDB() {
   console.log(targetDataObject);
 }
 
-loadDataFromLocalStorageFromDB();
+//loadDataFromLocalStorageFromDB();
 // ///////////////////////////////////////////////
 // ///////////////////////////////////////////////
 
@@ -194,7 +251,7 @@ const createAndPlaceNewGoalObject = function () {
   initialGoalInput.value = "";
 
   // sends mainGoals to database and returns data
-  // sendMainGoalsToDb();
+  sendMainGoalsToDb();
 };
 
 // TOP FUNCTION
